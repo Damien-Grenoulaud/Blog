@@ -1,16 +1,16 @@
-<%= form_with model: @user,url: login_path, local: true do |form| %>
-  <p>
+<%= form_with model: @user,url: login_path, local: true, style="width: fit-content" do |form| %>
+  <div class="appinput">
     <%= form.label :mail %><br>
     <%= form.email_field :mail %>
-  </p>
+  </div>
  
-  <p>
+  <div class="appinput mt-4">
     <%= form.label :password %><br>
     <%= form.password_field :password %>
-  </p>
+  </div>
  
-  <p>
-    <%= form.submit :envoyer %>
-  </p>
- 
+  <div class="between">
+    <%= form.submit :envoyer, class: "btn btn-primary mt-4" %>
+    <%= link_to 'Back', articles_path, class:"link" %>
+  </div>
 <% end %>

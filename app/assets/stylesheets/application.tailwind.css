@@ -23,7 +23,7 @@ h1 {
 }
 
 .between {
-  @apply w-full flex justify-between;
+  @apply w-full flex justify-between items-baseline;
 }
 
 .btn-blue:hover {
