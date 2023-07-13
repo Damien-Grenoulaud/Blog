@@ -35,18 +35,16 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy comment if connected" do
-    @headers = { headers: http_login }
+    delete article_comment_path(@article, @comment), headers: http_login
 
-    delete article_comment_path(@article, @comment), headers: @headers
-
-    # assert_response :see_other
-    # assert Comment.find_by(id: @comment.id).nil?
+    assert_response :see_other
+    assert Comment.find_by(id: @comment.id).nil?
   end
 
   private
 
   def http_login
-   {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials("dhh","secret")}
+   {"Authorization": ActionController::HttpAuthentication::Basic.encode_credentials("dhh","secret")}
    end
 end
 
