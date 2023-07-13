@@ -23,6 +23,12 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success,"reussi create new"
     assert_template :new,"chemin create new"
   end
+  test 'should get edit' do
+    @article = Article.create(title: "nouvel article")
+    get edit_article_path(id: @article.id)
 
+    assert_response :success,"Acces au edit"
+    assert_template :edit,"Acces au edit"
+  end
   
 end
