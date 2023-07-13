@@ -3,13 +3,11 @@
 class ArticlesController < ApplicationController
 
   def index
-    puts params[:titleSearch]
     if params[:titleSearch].present?
         @articles = Article.all.where "title like '%#{params[:titleSearch]}%'"
     else
         @articles = Article.all
     end
-    puts @articles.count
   end
 
   def show
