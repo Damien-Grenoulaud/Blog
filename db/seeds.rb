@@ -21,4 +21,6 @@ for n in 0..50
     puts Faker::Name.name
 end
 
+User.create([nom: "Test",prenom: "Jacques"])
+
 puts "Seeding done."
