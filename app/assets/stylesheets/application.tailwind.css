@@ -10,6 +10,10 @@
 }
 */
 
+h1 {
+  @apply font-bold text-xl;
+}
+
 .btn {
   @apply font-bold py-1 px-4 rounded inline-flex items-center;
 }
@@ -27,5 +31,27 @@
 }
 
 .link {
-  @apply text-blue-500 font-bold;
+  @apply text-blue-500 font-bold cursor-pointer;
+}
+
+.appinput > input {
+  @apply bg-slate-100 text-slate-200 rounded border-slate-100;
+  &:focus {
+    @apply border-slate-400;
+    box-shadow: none;
+  }
+}
+
+.table {
+  table-layout: auto;
+  width: 100%;
+}
+
+table > thead > tr {
+  @apply bg-slate-200;
+}
+
+th,
+td {
+  @apply border-slate-200 border p-4;
 }
