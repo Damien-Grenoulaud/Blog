@@ -6,6 +6,9 @@ class AuthenticationController < ApplicationController
   end
   def search
     @user = User.all.where "mail ='#{params[:mail]}' AND password_digest='#{params[:password]}' "
-    puts @user
+    
+    @user = User.new(mail: "test@test.com")
+
+    render :login, status: :unprocessable_entity
   end
 end
