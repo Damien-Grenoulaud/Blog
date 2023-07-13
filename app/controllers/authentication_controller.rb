@@ -5,10 +5,15 @@ class AuthenticationController < ApplicationController
     @user = User.new
   end
   def search
-    @user = User.all.where "mail ='#{params[:mail]}' AND password_digest='#{params[:password]}' "
+    @user = User.find_by(mail: params[:user][:mail]).try(:authenticate, params[:user][:password]) || User.new
     
-    @user = User.new(mail: "test@test.com")
+    if @user.id
+      flash[:notice] = "C est valide"
 
-    render :login, status: :unprocessable_entity
+      render :login, status: :see_other
+    else
+      flash[:notice] = "Identifiant / mot de passe incorrect"
+      render :login, status: :unprocessable_entity
+    end
   end
 end

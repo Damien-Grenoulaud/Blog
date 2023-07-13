@@ -1,7 +1,7 @@
-<%= form_with model: @user,url: login_path, local: true, style: "width: fit-content" do |form| %>
+<%= form_with model: @user,url: login_path, local: true do |form| %>
   <div class="appinput">
     <%= form.label :mail %><br>
-    <%= form.email_field :mail %>
+    <%= form.text_field :mail %>
   </div>
  
   <div class="appinput mt-4">

@@ -14,6 +14,17 @@
   <body>
     <main class="container mx-auto px-5 mt-6">
       <div class="flex justify-end mb-6"><%= link_to "Connexion", login_path, class: "link" %></div>
+      
+      <% unless notice.nil? %>
+        <div class="flex">
+          <div class="flex-1">
+            <%= flash_success do %>
+              <%= notice %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>
