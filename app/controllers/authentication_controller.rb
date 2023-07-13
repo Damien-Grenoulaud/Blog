@@ -2,5 +2,9 @@
 
 class AuthenticationController < ApplicationController
   def login
+    @user = User.new
+  end
+  def search
+    
   end
 end
