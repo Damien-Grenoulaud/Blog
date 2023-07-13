@@ -41,11 +41,25 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update edit' do
     @article = Article.create(title: "nouvel article")
-    get edit_article_path(action: "update",id: @article.id,title: "nouveau titre")
+    
+    patch article_path(@article, params: {
+      article: {
+        title: "new title"
+      }
+      
+    })
+    assert_response :redirect,"reussi au update"
 
-    assert_response :success,"reussi au update"
-    assert_template :edit,"chemin au update"
-    assert @article.title = "nouveau titre"
+    assert Article.find(@article.id).title == "new title"
+  end
+
+  test 'should destroy article' do
+    @article = Article.create(title: "nouvel article")
+    
+    delete article_path(@article)
+    assert_response :redirect,"reussi au update"
+
+    assert_not Article.find_by id:@article.id
   end
   
 
