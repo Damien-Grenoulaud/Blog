@@ -5,6 +5,7 @@ class AuthenticationController < ApplicationController
     @user = User.new
   end
   def search
-    
+    @user = User.all.where "mail ='#{params[:mail]}' AND password_digest='#{params[:password]}' "
+    puts @user
   end
 end
