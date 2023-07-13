@@ -1,4 +1,4 @@
-<h1>Listing Articles</h1>
+<h1>Liste des articles</h1>
 <%= link_to 'New article', new_article_path %>
 
 <h3>Recherchez un article :</h3>
@@ -15,8 +15,8 @@
 <% end %>
 <table>
   <tr>
-    <th>Title</th>
-    <th>Text</th>
+    <th>Titre</th>
+    <th>Contenu</th>
     <th colspan="3"></th>
   </tr>
  
@@ -24,11 +24,11 @@
     <tr>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= button_to 'Destroy', article_path(article),
+      <td><%= link_to 'Afficher', article_path(article) %></td>
+      <td><%= link_to 'Modifier', edit_article_path(article) %></td>
+      <td><%= button_to 'Supprimer', article_path(article),
               method: :delete,
-              data: { turbo_confirm: 'Are you sure?' } %></td>
+              data: { turbo_confirm: 'Etes vous sur ?' } %></td>
     <%# <td><%= link_to 'Destroy', article_path(article),
     <%# data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
     </tr>
