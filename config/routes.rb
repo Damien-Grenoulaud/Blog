@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get :login, to: "authentication#login"
-  post :search, to: "authentication#search"
+  post :login, to: "authentication#search"
 end
