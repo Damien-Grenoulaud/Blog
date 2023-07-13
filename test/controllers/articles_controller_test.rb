@@ -18,11 +18,18 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create new' do
-    get new_article_path(:action=>"create",:title=>"test ok")
+    article_count = Article.count
+    post articles_path params: {
+      article: {
+        title: "new title",
+        text: "new text"
+      }
+    }
 
-    assert_response :success,"reussi create new"
-    assert_template :new,"chemin create new"
+    assert_response :redirect, "reussi create new"
+    assert Article.count == article_count + 1
   end
+  
   test 'should get edit' do
     @article = Article.create(title: "nouvel article")
     get edit_article_path(id: @article.id)
@@ -30,5 +37,4 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success,"Acces au edit"
     assert_template :edit,"Acces au edit"
   end
-  
 end
