@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto px-5 mt-6">
+      <div class="flex justify-end mb-6"><%= link_to "Connexion", login_path, class: "link" %></div>
       <%= yield %>
     </main>
   </body>
