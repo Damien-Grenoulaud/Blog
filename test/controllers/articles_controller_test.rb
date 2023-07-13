@@ -16,4 +16,13 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success,"Acces au new"
     assert_template :new,"Acces au new"
   end
+
+  test 'should create new' do
+    get new_article_path(:action=>"create",:title=>"test ok")
+
+    assert_response :success,"reussi create new"
+    assert_template :new,"chemin create new"
+  end
+
+  
 end
