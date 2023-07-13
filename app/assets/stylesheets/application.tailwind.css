@@ -11,3 +11,23 @@
 }
 
 */
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white;
+}
+
+.between {
+  @apply w-full flex justify-between;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.link {
+  @apply text-blue-500 font-bold;
+}

@@ -1,3 +1,7 @@
-<h1>Bonjour, Rails!</h1>
-<%= link_to 'Mon Blog', controller: 'articles' %>
-<%= link_to 'Nouvel article', new_article_path %>
+<%= tag.div class: "between" do %>
+  <div>
+    <h1>Bonjour!</h1>
+    <%= link_to 'Mon Blog', articles_path, class: "link"  %>
+  </div>
+  <%= link_to 'Nouvel article', new_article_path, class: "btn btn-primary" %>
+<% end %>
