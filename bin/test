@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+  if ! command -v foreman &> /dev/null
+then
+  echo "Installing foreman..."
+  gem install rubocop
+fi
+
+rubocop app/controllers
+rubocop app/helpers
+rubocop app/mailers
+rubocop app/jobs
+rubocop app/models
+rubocop db/seeds.rb
