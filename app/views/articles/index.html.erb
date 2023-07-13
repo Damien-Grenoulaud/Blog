@@ -1,5 +1,18 @@
 <h1>Listing Articles</h1>
 <%= link_to 'New article', new_article_path %>
+
+<h3>Recherchez un article :</h3>
+<%= form_with model: @article, local: true,method: :get do |form| %>
+  <p>
+
+    <%= form.text_field :titleSearch %>
+  </p>
+ 
+  <p>
+    <%= form.submit :Recherchez %>
+  </p>
+ 
+<% end %>
 <table>
   <tr>
     <th>Title</th>

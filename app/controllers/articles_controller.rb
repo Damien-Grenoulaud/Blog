@@ -3,7 +3,13 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    puts params[:titleSearch]
+    if params[:titleSearch].present?
+        @articles = Article.all.where "title like '%#{params[:titleSearch]}%'"
+    else
+        @articles = Article.all
+    end
+    puts @articles.count
   end
 
   def show
@@ -24,8 +30,6 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
-      puts :aaaaaa
-      puts @article.errors.inspect
       render 'new', status: :unprocessable_entity
     end
   end
