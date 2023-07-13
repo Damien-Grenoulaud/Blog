@@ -30,5 +30,14 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success,"Acces au edit"
     assert_template :edit,"Acces au edit"
   end
+
+  test 'should update edit' do
+    @article = Article.create(title: "nouvel article")
+    get edit_article_path(action: update,id: @article.id,title: "nouveau titre")
+
+    assert_response :success,"reussi au update"
+    assert_template :edit,"chemin au update"
+    assert @article.title = "nouveau titre"
+  end
   
 end
