@@ -10,7 +10,7 @@ require 'faker'
 puts "Seeding..."
 
 Article.destroy_all
-
+User.destroy_all
 for n in 0..50
     @article = Article.create([title: Faker::Name.name,text: Faker::Markdown.emphasis])
     for y in 0..3
@@ -21,6 +21,6 @@ for n in 0..50
     puts Faker::Name.name
 end
 
-User.create([nom: "Test",prenom: "Jacques",mail: "jacques@test.com",password_digest: "motdepasse"])
+User.create([nom: "Test",prenom: "Jacques",mail: "jacques@test.com",password: "motdepasse",password_confirmation:"motdepasse"])
 
 puts "Seeding done."
