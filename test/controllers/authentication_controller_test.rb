@@ -13,6 +13,7 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
   test 'should post login to search' do
     login
 
+    assert session[:current_user_id].present?
     assert_response :see_other
   end
   test 'should not post login to search' do
@@ -32,7 +33,7 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
   test 'should logout' do
     login
     delete logout_path
-    
+    assert session[:current_user_id].nil?
     assert_response :redirect
   end
 
