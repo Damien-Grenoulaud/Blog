@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    loginRelocateObligatory()
     @article = Article.new
   end
 

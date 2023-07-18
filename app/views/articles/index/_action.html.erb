@@ -1,4 +1,8 @@
 <%= tag.div class: "between mb-4" do %>
   <h1>Liste des articles</h1>
-  <%= link_to 'Nouvelle article', new_article_path, class: "btn btn-primary" %>
+  <%=
+    unless @current_user.nil?
+      link_to 'Nouvelle article', new_article_path, class: "btn btn-primary" 
+    end
+  %>
 <% end %>
