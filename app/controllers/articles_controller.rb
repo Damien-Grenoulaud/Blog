@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-
+  before_action :login_relocate_obligatory, expect: [:index,:show]
   def index
     if params[:titleSearch].present?
         @articles = Article.all.where "title like '%#{params[:titleSearch]}%'"
@@ -19,7 +19,6 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    loginRelocateObligatory()
     @article = Article.new
   end
 
