@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Article créé"
     else
       render 'new', status: :unprocessable_entity
     end

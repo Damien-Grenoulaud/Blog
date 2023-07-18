@@ -32,6 +32,15 @@
           </div>
         </div>
       <% end %>
+      <% unless alert.nil? %>
+        <div class="flex">
+          <div class="flex-1">
+            <%= flash_success do %>
+              <%= alert %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
       <%= yield %>
     </main>

@@ -20,7 +20,7 @@ class AuthenticationController < ApplicationController
       render :login, status: :see_other
       
     else
-      flash[:notice] = "Identifiant / mot de passe incorrect"
+      flash[:alert] = "Identifiant / mot de passe incorrect"
       render :login, status: :unprocessable_entity
     end
   end
