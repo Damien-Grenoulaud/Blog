@@ -37,9 +37,9 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy, notice: "Article supprimé"
+    @article.destroy
 
-    redirect_to articles_path
+    redirect_to articles_path, notice: "Article supprimé"
   end
 
   private
