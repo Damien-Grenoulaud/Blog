@@ -19,7 +19,7 @@ h1 {
 }
 
 .btn {
-  @apply font-bold py-1 px-4 rounded inline-flex items-center;
+  @apply font-bold py-1 px-4 rounded inline-flex items-center h-fit;
 }
 
 .btn-primary {
@@ -39,6 +39,14 @@ h1 {
 }
 
 .appinput > input {
+  @apply bg-slate-100 rounded border-slate-100;
+  &:focus {
+    @apply border-slate-400;
+    box-shadow: none;
+  }
+}
+
+.appinput > textarea {
   @apply bg-slate-100 rounded border-slate-100;
   &:focus {
     @apply border-slate-400;
