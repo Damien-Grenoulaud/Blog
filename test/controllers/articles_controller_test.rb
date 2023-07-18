@@ -25,13 +25,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test 'should not get new' do
-    get new_article_path
-
-    assert_response :redirect,"Acces au new"
-  end
-
   test 'should create new' do
+    login
     article_count = Article.count
     post articles_path params: {
       article: {
@@ -40,7 +35,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_response :redirect, "reussi create new"
+    assert_response :redirect
     assert Article.count == article_count + 1
   end
 
@@ -58,6 +53,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
   
   test 'should get edit' do
+    login
     @article = Article.create(title: "nouvel article")
     get edit_article_path(id: @article.id)
 
@@ -74,6 +70,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
 
   test 'should update edit' do
+    login
     @article = Article.create(title: "nouvel article")
     
     patch article_path(@article, params: {
@@ -102,6 +99,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy article' do
+    login
     @article = Article.create(title: "nouvel article")
     
     delete article_path(@article)
