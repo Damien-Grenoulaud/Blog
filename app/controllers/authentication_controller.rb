@@ -6,8 +6,7 @@ class AuthenticationController < ApplicationController
   end
   def logout
     session.clear
-    redirect_to login_path
-    flash[:notice] = "Vous êtes déconnecté"
+    redirect_to login_path, notice: "Vous êtes déconnecté"
   end
 
   # TODO /!\ ici il faut tester que une foit connecté le boutton change bien à deconnexion, sans devoir rafraichir ma page.
