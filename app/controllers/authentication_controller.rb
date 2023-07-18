@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
     flash[:notice] = "Vous êtes déconnecté"
   end
 
-  # /!\ ici il faut tester que une foit connecté le boutton change bien à deconnexion, sans devoir rafraichir ma page.
+  # TODO /!\ ici il faut tester que une foit connecté le boutton change bien à deconnexion, sans devoir rafraichir ma page.
   def search
     @user = User.find_by(mail: params[:user][:mail]).try(:authenticate, params[:user][:password]) || User.new(login_params)
     
