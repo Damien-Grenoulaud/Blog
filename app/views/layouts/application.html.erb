@@ -18,7 +18,10 @@
         if @current_user.nil?
           link_to "Connexion", login_path, class: "link" 
         else 
-          link_to "Deconnexion", logout_path, class: "link" 
+          button_to logout_path, method: :delete, data: { turbo_confirm: 'Etes vous sur ?' } do %>
+            Deconnexion
+            <% 
+          end 
         end
         %>
       </div>

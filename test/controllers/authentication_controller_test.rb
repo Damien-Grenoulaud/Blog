@@ -10,4 +10,23 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
     assert_template :login
   end
 
+  test 'should post login to search' do
+    login
+
+    assert_response :see_other
+  end
+  test 'should not post login to search' do
+    post login_path params: {
+        user: {
+          mail: "test@test.com",
+          password: "Faux mot de passe"
+        }
+    }
+    
+
+    assert_response :unprocessable_entity
+    assert_template :login
+  end
+
+
 end

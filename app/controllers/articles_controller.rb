@@ -23,21 +23,20 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article, notice: "Article créé"
     else
-      flash[:alert] = "Une erreur est survenue"
       render 'new', status: :unprocessable_entity
     end
   end
 
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: "Article mis à jour"
+      redirect_to @article
     else
       render 'edit'
     end
   end
 
   def destroy
-    @article.destroy, notice: "Article supprimé"
+    @article.destroy
 
     redirect_to articles_path
   end

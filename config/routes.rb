@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get :login, to: "authentication#login"
-  get :logout, to: "authentication#logout"
+  delete :logout, to: "authentication#logout"
   post :login, to: "authentication#search"
 end
