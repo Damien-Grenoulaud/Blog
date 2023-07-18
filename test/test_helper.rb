@@ -12,6 +12,22 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
+    def login
+      set_user
+   
+      post login_path params: {
+         user: {
+           mail: "test@test.com",
+           password: "motdepasse"
+         }
+       }
+     end
+   
+     private
+   
+     def set_user
+       User.create(nom: "Test", prenom: "test", mail: "test@test.com", password: "motdepasse", password_confirmation:"motdepasse") unless User.find_by mail: "test@test.com" 
+     end
     # Add more helper methods to be used by all tests here...
   end
 end
