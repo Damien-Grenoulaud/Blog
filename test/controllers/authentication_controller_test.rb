@@ -27,6 +27,14 @@ class AuthenticationControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_template :login
   end
+    
+
+  test 'should logout' do
+    login
+    delete logout_path
+    
+    assert_response :redirect
+  end
 
 
 end
