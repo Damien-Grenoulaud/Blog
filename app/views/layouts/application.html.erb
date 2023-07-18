@@ -13,7 +13,15 @@
 
   <body>
     <main class="container mx-auto px-5 mt-6">
-      <div class="flex justify-end mb-6"><%= link_to "Connexion", login_path, class: "link" %></div>
+      <div class="flex justify-end mb-6">
+        <%= 
+        if @current_user.nil?
+          link_to "Connexion", login_path, class: "link" 
+        else 
+          link_to "Deconnexion", login_path, class: "link" 
+        end
+        %>
+      </div>
       
       <% unless notice.nil? %>
         <div class="flex">
