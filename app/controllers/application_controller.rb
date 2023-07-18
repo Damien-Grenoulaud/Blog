@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
     end
 
     def login_relocate_obligatory
-        redirect_to welcome_index_path, notice: "Accés refusé" unless @current_user
+        redirect_to welcome_index_path, alert: "Accés refusé" unless @current_user
     end
 end
