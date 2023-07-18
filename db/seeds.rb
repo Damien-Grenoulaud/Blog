@@ -21,6 +21,8 @@ for n in 0..50
     puts Faker::Name.name
 end
 
+# TODO La tu pourrais utiliser la class Faker comme au dessus pour le nom et prenom
+# le mail pourrais etres test@test.com que ce soit plus parlant.
 User.create([nom: "Test",prenom: "Jacques",mail: "jacques@test.com",password: "motdepasse",password_confirmation:"motdepasse"])
 
 puts "Seeding done."
