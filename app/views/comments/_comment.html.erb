@@ -1,13 +1,8 @@
 <p>
-  <strong>Commenter:</strong>
+  <strong>Anonyme:</strong>
   <%= comment.commenter %>
 </p>
- 
 <p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-<p>
-    <td><%= link_to 'Destroy Comment', [comment.article, comment],
-            data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
+  <td><i><%= link_to 'Supprimer', [comment.article, comment], class: "text-xs",
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td></i>
 </p>
