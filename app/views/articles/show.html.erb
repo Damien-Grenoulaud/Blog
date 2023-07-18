@@ -1,12 +1,10 @@
-<p>
-  <strong>Titre:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Contenu:</strong>
-  <%= @article.text %>
-</p>
+<div class="between">
+  <div>
+    <h1><%= @article.title %></h1>
+    <%= @article.updated_at.strftime("%d-%m%-%Y") %>
+  </div>
+</div>
+<%= @article.text %>
 <h2>Commentaires</h2>
 <%= render @article.comments %>
 
