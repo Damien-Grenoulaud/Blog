@@ -2,7 +2,7 @@
 
 class ArticlesController < ApplicationController
   before_action :login_relocate_obligatory, except: [:index, :show]
-  before_action :set_article, except: [:index]
+  before_action :set_article, except: [:index,:create]
 
   def index
     if params[:titleSearch].present?

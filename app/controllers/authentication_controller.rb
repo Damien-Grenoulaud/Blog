@@ -9,7 +9,6 @@ class AuthenticationController < ApplicationController
     redirect_to login_path, notice: "Vous êtes déconnecté"
   end
 
-  # TODO /!\ ici il faut tester que une foit connecté le boutton change bien à deconnexion, sans devoir rafraichir ma page.
   def search
     @user = User.find_by(mail: params[:user][:mail]).try(:authenticate, params[:user][:password]) || User.new(login_params)
     
