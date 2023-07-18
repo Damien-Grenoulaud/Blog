@@ -16,7 +16,7 @@ class AuthenticationController < ApplicationController
     if @user.id
       flash[:notice] = "C est valide"
       session[:current_user_id] = @user.id
-      getCurrentUser
+      set_current_user
       render :login, status: :see_other
       
     else

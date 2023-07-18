@@ -10,12 +10,19 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_template :index
   end
 
-  test 'should get new' do
-    connect_user()
+  test 'should get new authenticated' do
+    login
+
     get new_article_path
 
     assert_response :success,"Acces au new"
     assert_template :new,"Acces au new"
+  end
+
+  test 'shouldnt get new unauthenticated' do
+    get new_article_path
+
+    assert_response :redirect
   end
 
   test 'should not get new' do
@@ -25,8 +32,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create new' do
-    connect_user()
-
     article_count = Article.count
     post articles_path params: {
       article: {
@@ -53,8 +58,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
   
   test 'should get edit' do
-    connect_user()
-
     @article = Article.create(title: "nouvel article")
     get edit_article_path(id: @article.id)
 
@@ -71,8 +74,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
 
   test 'should update edit' do
-    connect_user()
-
     @article = Article.create(title: "nouvel article")
     
     patch article_path(@article, params: {
@@ -101,8 +102,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy article' do
-    connect_user()
-
     @article = Article.create(title: "nouvel article")
     
     delete article_path(@article)
@@ -119,11 +118,5 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect,"non reussi au delete"
 
     assert Article.find_by id:@article.id
-  end
-  
-  def connect_user
-    @user = User.find_by(mail: "jacques@test.com").try(:authenticate, "motdepasse")
-    session[:current_user_id] = @user.id
-    getCurrentUser
   end
 end
