@@ -4,6 +4,11 @@ class AuthenticationController < ApplicationController
   def login
     @user = User.new
   end
+  def logout
+    session.clear
+    redirect_to login_path
+    flash[:notice] = "Vous êtes déconnecté"
+  end
 
   def search
     @user = User.find_by(mail: params[:user][:mail]).try(:authenticate, params[:user][:password]) || User.new(login_params)

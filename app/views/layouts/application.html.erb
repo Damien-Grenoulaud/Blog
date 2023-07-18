@@ -18,7 +18,7 @@
         if @current_user.nil?
           link_to "Connexion", login_path, class: "link" 
         else 
-          link_to "Deconnexion", login_path, class: "link" 
+          link_to "Deconnexion", logout_path, class: "link" 
         end
         %>
       </div>
