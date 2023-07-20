@@ -71,7 +71,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update edit' do
     login
-    @article = Article.create(title: "nouvel article")
+    @article = Article.create(title: "nouvel article",users_id: session[:current_user_id])
     
     patch article_path(@article, params: {
       article: {
@@ -100,7 +100,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy article' do
     login
-    @article = Article.create(title: "nouvel article")
+    @article = Article.create(title: "nouvel article",users_id: session[:current_user_id])
     
     delete article_path(@article)
     assert_response :redirect,"reussi au delete"

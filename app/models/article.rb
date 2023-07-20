@@ -22,18 +22,18 @@ class Article < ApplicationRecord
                     length: { minimum: 5 }
 
   def editable?
-    if(article.users_id != @current_user.id && @current_user.admin == false)
-      return false
-    else
+    #if(article.users_id != @current_user.id && @current_user.admin == false)
+    #  return false
+    #else
         return true
-    end
+    #end
   end
 
   def deletable?
-    if(article.users_id != @current_user.id && @current_user.admin == false)
-      return false
-    else
+    #if(article.users_id != @current_user.id && @current_user.admin == false)
+    #  return false
+    #else
         return true
-    end
+    #end
   end
 end
