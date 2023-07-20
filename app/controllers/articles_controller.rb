@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new article_params
+    @article.users_id = @current_user.id
     if @article.save
       redirect_to @article, notice: "Article créé"
     else
@@ -29,6 +30,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
+      @article.users_id = @current_user.id
       redirect_to @article
     else
       render 'edit'

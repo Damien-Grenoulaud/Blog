@@ -7,7 +7,17 @@
     <h1><%= @article.title %></h1>
     <%= @article.updated_at.strftime("%d-%m-%Y") %>
   </div>
-  <div><%= "TODO FIRSTNAME LASTNAME" %></div>
+  <div><%= 
+  
+  unless @article.users_id.nil?
+    @user = User.find_by_id(@article.users_id)
+    @user.nom
+    @user.prenom
+    "azzaf"
+  else
+    "test"
+  end
+  %></div>
 </div>
 
 <div class="mb-4">
