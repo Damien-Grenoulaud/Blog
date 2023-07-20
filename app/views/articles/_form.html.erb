@@ -14,18 +14,19 @@
     </div>
   <% end %>
  
-  <p>
+  <div class="appinput">
     <%= form.label :title %><br>
     <%= form.text_field :title %>
-  </p>
+  </div>
  
-  <p>
+  <div class="appinput">
     <%= form.label :text %><br>
-    <%= form.text_area :text %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+    <%= form.text_area :text, class: "w-full" %>
+  </div>
+
+  <div class="between">
+    <%= form.submit :envoyer, class: "btn btn-primary mt-4" %>
+    <%= link_to 'Annuler', articles_path, class:"link" %>
+  </div>
  
 <% end %>

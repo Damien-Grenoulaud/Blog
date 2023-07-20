@@ -38,8 +38,20 @@ h1 {
   @apply text-blue-500 font-bold cursor-pointer;
 }
 
+.link-red {
+  @apply text-red-500 font-bold cursor-pointer;
+}
+
+.field_with_errors > input {
+  @apply bg-slate-100 rounded border-slate-100 w-full;
+  &:focus {
+    @apply border-slate-400;
+    box-shadow: none;
+  }
+}
+
 .appinput > input {
-  @apply bg-slate-100 rounded border-slate-100;
+  @apply bg-slate-100 rounded border-slate-100 w-full;
   &:focus {
     @apply border-slate-400;
     box-shadow: none;
