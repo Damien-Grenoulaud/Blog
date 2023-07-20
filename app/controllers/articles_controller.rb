@@ -46,16 +46,16 @@ class ArticlesController < ApplicationController
     redirect_to articles_path, notice: "Article supprimé"
   end
 
-
+  public
   def editable
-    if(@article.users_id != @current_user.id && @current_user.admin == false)
+    if(article.users_id != @current_user.id && @current_user.admin == false)
       return false
     else
       return true
     end
   end
   def deletable
-    if(@article.users_id != @current_user.id && @current_user.admin == false)
+    if(article.users_id != @current_user.id && @current_user.admin == false)
       return false
     else
       return true
