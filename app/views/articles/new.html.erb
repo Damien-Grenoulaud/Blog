@@ -1,5 +1,6 @@
-<h1>New article</h1>
- 
-<%= render 'form' %>
- 
-<%= link_to 'Back', articles_path %>
+<%= tag.div class: "flex justify-center pt-4" do %>
+  <h1>Nouvelle article article</h1>
+<% end %>
+<%= tag.div class: "flex justify-center pt-4" do %>
+  <%= render 'form' %>
+<% end %>
