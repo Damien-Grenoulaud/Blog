@@ -12,12 +12,12 @@ puts "Seeding..."
 Article.destroy_all
 User.destroy_all
 
-User.create([nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: "true"])
+User.create([nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: true])
 
-User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "utilisateur@test.com",password: "motdepasseuser",password_confirmation:"motdepasseuser"])
+User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "user@test.com",password: "motdepasseuser",password_confirmation:"motdepasseuser",admin:false])
 
 
-@user = User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "test@test.com",password: "motdepasse",password_confirmation:"motdepasse"])
+@user = User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "test@test.com",password: "motdepasse",password_confirmation:"motdepasse",admin:false])
 @idUser = @user.first.id
 for n in 0..50
     

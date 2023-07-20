@@ -3,6 +3,7 @@
 class ArticlesController < ApplicationController
   before_action :login_relocate_obligatory, except: [:index, :show]
   before_action :set_article, except: [:index,:create]
+  before_action :verif_user, only: [:update,:edit,:destroy]
 
   def index
     if params[:titleSearch].present?
@@ -53,5 +54,14 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = params[:id].present? ? Article.find(params[:id]) : Article.new
+  end
+  def verif_user
+    puts "test test"
+    puts @article.users_id
+    puts @current_user.id
+    puts @current_user.admin
+    if(@article.users_id != @current_user.id && @current_user.admin == false)
+      redirect_to welcome_index_path, alert: "Accés refusé"
+    end
   end
 end
