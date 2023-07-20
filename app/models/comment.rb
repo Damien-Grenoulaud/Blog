@@ -10,10 +10,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  article_id :integer          not null
+#  users_id   :integer
 #
 # Indexes
 #
 #  index_comments_on_article_id  (article_id)
+#  index_comments_on_users_id    (users_id)
 #
 # Foreign Keys
 #
