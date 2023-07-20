@@ -3,7 +3,7 @@
   <%= 
   unless @article.users_id.nil?
     if(@current_user)
-      if(@article.users_id == @current_user.id)
+      if(@article.users_id == @current_user.id || @current_user.admin == true)
         link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
       end
     end

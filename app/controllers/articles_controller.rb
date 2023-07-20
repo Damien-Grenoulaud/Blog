@@ -29,11 +29,13 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.users_id = @current_user.id
-    if @article.update(article_params)
-      redirect_to @article
-    else
-      render 'edit', status: :unprocessable_entity
+    if(@article.users_id == @current_user.id || @current_user.admin == true)
+      @article.users_id = @current_user.id
+      if @article.update(article_params)
+        redirect_to @article
+      else
+        render 'edit', status: :unprocessable_entity
+      end
     end
   end
 
