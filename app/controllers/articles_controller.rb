@@ -57,10 +57,6 @@ class ArticlesController < ApplicationController
   end
   
   def verif_user
-    puts "test test"
-    puts @article.users_id
-    puts @current_user.id
-    puts @current_user.admin
     if(@article.users_id != @current_user.id && @current_user.admin == false)
       redirect_to welcome_index_path, alert: "Accés refusé"
     end

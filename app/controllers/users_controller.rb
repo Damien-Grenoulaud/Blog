@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  before_action :verif_droit, except: [:index]
 
   # GET /users or /users.json
   def index
@@ -67,5 +67,11 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:nom,:prenom,:mail,:password,:password_confirmation,:avatar)
+    end
+
+    def verif_droit
+      if(@user.id != @current_user.id && @current_user.admin == false)
+        redirect_to welcome_index_path, alert: "Accés refusé"
+      end
     end
 end
