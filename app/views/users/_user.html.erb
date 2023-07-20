@@ -1,8 +1,8 @@
-<div id="<%= dom_id user %>">
-  <% if action_name != "show" %>
-    
-    <%= link_to "Show this user", user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this user', edit_user_path(user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr>
+  <td><%= user.nom %></td>
+  <td><%= user.prenom %></td>
+  <td class="flex gap-4 justify-center">
+    <%= link_to "Voir le profile", user, class: "btn btn-primary" %>
+    <%= link_to 'Modifier', edit_user_path(user), class: "btn btn-primary" %>
+  </td>
+</tr>
