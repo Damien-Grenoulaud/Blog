@@ -1,0 +1,8 @@
+<%= tag.div class: "between mb-4" do %>
+  <h1>Liste des Utilisateurs</h1>
+  <%=
+    unless @current_user.admin?
+      link_to 'Nouveelle utilisateur', new_user_path, class: "btn btn-primary" 
+    end
+  %>
+<% end %>

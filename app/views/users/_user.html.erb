@@ -1,14 +1,19 @@
+<<<<<<< HEAD
 <div id="<%= dom_id user %>">
+<tr>
   <% if action_name != "show" %>
+  <td>
     <%= 
     if user.avatar.attached?
       image_tag user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
     end
     %>
-    <%= user.nom %>
-    <%= user.prenom %>
-    <%= link_to "Show this user", user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this user', edit_user_path(user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+  </td>
+
+  <td><%= user.nom %></td>
+  <td><%= user.prenom %></td>
+  <td class="flex gap-4 justify-center">
+    <%= link_to "Voir le profile", user, class: "btn btn-primary" %>
+    <%= link_to 'Modifier', edit_user_path(user), class: "btn btn-primary" %>
+  </td>
+</tr>

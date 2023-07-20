@@ -12,35 +12,29 @@
   <% end %>
 
   <div class="inline">
-    <p>
+    <div class="appinput">
       <%= form.label :nom %><br>
       <%= form.text_field :nom %>
-    </p>
+    </div>
   
-    <p>
+    <div class="appinput">
       <%= form.label :prenom %><br>
       <%= form.text_field :prenom %>
-    </p>
+    </div>
 
-    <p>
+    <div class="appinput">
       <%= form.label :mail %><br>
       <%= form.text_field :mail %>
-    </p>
+    </div>
 
-    <p>
-      <%= form.label :password %><br>
-      <%= form.password_field :password %>
-    </p>
-
-    <p>
-      <%= form.label :password_confirmation  %><br>
-      <%= form.password_field :password_confirmation %>
-    </p>
-    <p>
+    <div class="appinput mb-4">
       <%= form.label :avatar  %><br>
       <%= form.file_field :avatar %>
-    </p>
+    </div>
 
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <div class="between">
+      <%= form.submit :envoyer, class: "btn btn-primary mt-4" %>
+      <%= link_to 'Annuler', articles_path, class:"link" %>
+    </div>
   </div>
 <% end %>
