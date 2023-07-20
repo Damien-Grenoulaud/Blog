@@ -38,6 +38,10 @@ h1 {
   @apply text-blue-500 font-bold cursor-pointer;
 }
 
+.link-red {
+  @apply text-red-500 font-bold cursor-pointer;
+}
+
 .appinput > input {
   @apply bg-slate-100 rounded border-slate-100;
   &:focus {

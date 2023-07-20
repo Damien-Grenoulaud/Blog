@@ -55,6 +55,7 @@ class ArticlesController < ApplicationController
   def set_article
     @article = params[:id].present? ? Article.find(params[:id]) : Article.new
   end
+  
   def verif_user
     puts "test test"
     puts @article.users_id
