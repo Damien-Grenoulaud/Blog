@@ -11,8 +11,14 @@ puts "Seeding..."
 
 Article.destroy_all
 User.destroy_all
+
+User.create([nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: "true"])
+
+@user = User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "test@test.com",password: "motdepasse",password_confirmation:"motdepasse"])
+@idUser = @user.first.id
 for n in 0..50
-    @article = Article.create([title: Faker::Name.name,text: Faker::Markdown.emphasis])
+    
+    @article = Article.create([title: Faker::Name.name,text: Faker::Markdown.emphasis,users_id: @idUser])
     for y in 0..3
         Comment.create([article_id: @article.first.id,commenter: Faker::Name.name,body: Faker::Markdown.emphasis])
         
@@ -23,6 +29,6 @@ end
 
 # TODO La tu pourrais utiliser la class Faker comme au dessus pour le nom et prenom
 # le mail pourrais etres test@test.com que ce soit plus parlant.
-User.create([nom: "Test",prenom: "Jacques",mail: "jacques@test.com",password: "motdepasse",password_confirmation:"motdepasse"])
+
 
 puts "Seeding done."
