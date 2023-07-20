@@ -20,10 +20,7 @@
   unless @article.users_id.nil?
     @user = User.find_by_id(@article.users_id)
     if @user.avatar.attached?
-    puts "test avatar"
       image_tag @user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
-    else
-      puts "PAS d'avatars"
     end
   end
   %>
