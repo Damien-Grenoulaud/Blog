@@ -46,6 +46,21 @@ class ArticlesController < ApplicationController
     redirect_to articles_path, notice: "Article supprimé"
   end
 
+
+  def editable
+    if(@article.users_id != @current_user.id && @current_user.admin == false)
+      return false
+    else
+      return true
+    end
+  end
+  def deletable
+    if(@article.users_id != @current_user.id && @current_user.admin == false)
+      return false
+    else
+      return true
+    end
+  end
   private
 
   def article_params
@@ -61,4 +76,5 @@ class ArticlesController < ApplicationController
       redirect_to welcome_index_path, alert: "Accés refusé"
     end
   end
+  
 end
