@@ -36,6 +36,10 @@
       <%= form.label :password_confirmation  %><br>
       <%= form.password_field :password_confirmation %>
     </p>
+    <p>
+      <%= form.label :avatar  %><br>
+      <%= form.file_field :avatar %>
+    </p>
 
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
