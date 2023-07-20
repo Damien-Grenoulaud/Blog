@@ -4,7 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
     @user.admin = true
-    #User.create([nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: true])
+    @user = User.create([nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: true])
   end
 
   test "should get index" do
@@ -19,7 +19,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference("User.count") do
-      post users_url, params: { user: { } }
+      post users_url, params: { user: {nom: "admin",prenom: "admin",mail: "admin@test.com",password: "motdepasseadmin",password_confirmation: "motdepasseadmin",admin: true } }
     end
 
     assert_redirected_to user_url(User.last)
