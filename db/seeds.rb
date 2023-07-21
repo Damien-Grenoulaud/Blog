@@ -21,11 +21,9 @@ User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "user@te
 @idUser = @user.first.id
 for n in 0..50
     
-    @article = Article.create([title: Faker::Name.name,text: Faker::Markdown.emphasis,users_id: @idUser])
+    @article = Article.create(title: Faker::Name.name,text: Faker::Markdown.emphasis,user: User.all.sample)
     for y in 0..3
-        Comment.create([article_id: @article.first.id,commenter: Faker::Name.name,body: Faker::Markdown.emphasis])
-        
-
+        Comment.create([article: @article,commenter: Faker::Name.name,body: Faker::Markdown.emphasis])
     end
     puts Faker::Name.name
 end

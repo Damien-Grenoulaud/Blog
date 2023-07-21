@@ -44,9 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_104018) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "users_type"
-    t.integer "users_id"
-    t.index ["users_type", "users_id"], name: "index_articles_on_users"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -55,18 +54,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_104018) do
     t.integer "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "users_id"
+    t.integer "user_id"
     t.index ["article_id"], name: "index_comments_on_article_id"
-    t.index ["users_id"], name: "index_comments_on_users_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "nom"
     t.string "prenom"
     t.string "mail"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
     t.boolean "admin"
   end
 

@@ -7,9 +7,9 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:titleSearch].present?
-        @articles = Article.all.where "title like '%#{params[:titleSearch]}%'"
+        @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
     else
-        @articles = Article.all
+        @articles = Article.all.includes(:user)
     end
   end
 
@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new article_params
-    @article.users_id = @current_user.id
     if @article.save
       redirect_to @article, notice: "Article créé"
     else
@@ -30,8 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if(@article.users_id == @current_user.id || @current_user.admin == true)
-      @article.users_id = @current_user.id
+    if(@article.user == @current_user || @current_user.admin?)
       if @article.update(article_params)
         redirect_to @article
       else
@@ -72,9 +70,7 @@ class ArticlesController < ApplicationController
   end
   
   def verif_user
-    if(@article.users_id != @current_user.id && @current_user.admin == false)
-      redirect_to welcome_index_path, alert: "Accés refusé"
-    end
+    redirect_to welcome_index_path, alert: "Accés refusé" unless @article.updelatable?
   end
   
 end

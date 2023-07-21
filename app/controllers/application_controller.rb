@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
     def set_current_user
         @current_user = User.find_by_id(session[:current_user_id])
+
+        Current.user = @current_user
+        Current.user = @current_user
+        Current.user = @current_user
     end
 
     def login_relocate_obligatory

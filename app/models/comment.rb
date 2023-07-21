@@ -23,4 +23,10 @@
 #
 class Comment < ApplicationRecord
   belongs_to :article
+  belongs_to :user, optional: true
+  before_create :set_user
+
+  def set_user
+    self.user = Current.user
+  end
 end

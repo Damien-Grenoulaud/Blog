@@ -14,4 +14,8 @@
 class User < ApplicationRecord
     has_secure_password
     has_one_attached :avatar
+
+    def full_name
+        "#{self.name} - #{self.prenom}" 
+    end
 end

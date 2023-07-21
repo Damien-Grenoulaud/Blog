@@ -1,9 +1,9 @@
 <div class="between my-4">
   <%= link_to '< Retour', articles_path, class: "link" %>
   <%= 
-  unless @article.users_id.nil?
+  unless @article.user.nil?
     if(@current_user)
-      if(@article.users_id == @current_user.id || @current_user.admin == true)
+      if(@article.user == @current_user || @current_user.admin?)
         link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
       end
     end
@@ -17,18 +17,20 @@
   </div>
   <div>
   <%= 
-  unless @article.users_id.nil?
-    @user = User.find_by_id(@article.users_id)
-    if @user.avatar.attached?
-      image_tag @user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
+
+  unless @article.user.nil?
+    if @article.user.avatar.attached?
+    puts "test avatar"
+      image_tag @article.user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
+    else
+      puts "PAS d'avatars"
     end
   end
   %>
   <%= 
   
-  unless @article.users_id.nil?
-    @user = User.find_by_id(@article.users_id)
-    @user.nom.to_s + " " + @user.prenom.to_s
+  unless @article.user.nil?
+    @article.user.nom.to_s + " " + @article.user.prenom.to_s
   else
     
   end

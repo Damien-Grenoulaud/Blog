@@ -21,19 +21,22 @@ class Article < ApplicationRecord
   validates :title, presence: true,
                     length: { minimum: 5 }
 
+  belongs_to :user, optional: true
+  before_create :set_user
+
+  def updelatable?
+    self.editable? && self.deletable?
+  end
+
   def editable?
-    #if(article.users_id != @current_user.id && @current_user.admin == false)
-    #  return false
-    #else
-        return true
-    #end
+    Current.user&.admin? || self.user == Current.user
   end
 
   def deletable?
-    #if(article.users_id != @current_user.id && @current_user.admin == false)
-    #  return false
-    #else
-        return true
-    #end
+    Current.user&.admin? || self.user == Current.user
+  end
+
+  def set_user
+    self.user = Current.user
   end
 end
