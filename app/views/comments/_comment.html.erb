@@ -1,8 +1,11 @@
 <p>
-  <strong>Anonyme:</strong>
+  <div>
+    <%= avatar(comment.user&.avatar) %>
+    <b><%= comment.titulaire %>:</b>
+  </div>
   <%= comment.commenter %>
 </p>
 <p>
   <td><i><%= link_to 'Supprimer', [comment.article, comment], class: "text-xs",
-          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td></i>
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } if comment.deletable? %></td></i>
 </p>

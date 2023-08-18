@@ -14,7 +14,7 @@
   <body>
     <main class="container mx-auto px-5 mt-6">
       <div class="between pb-4 mb-4">
-        <div><%= link_to "Acceuil", welcome_index_path, class: "link" %></div>
+        <div><%= link_to "Accueil", welcome_index_path, class: "link" %></div>
         <div>
           <%= if @current_user.nil?
               link_to "Connexion", login_path, class: "link" 
@@ -49,5 +49,8 @@
 
       <%= yield %>
     </main>
+    <div data-controller="modal">
+
+    </div>
   </body>
 </html>
