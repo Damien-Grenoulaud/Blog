@@ -21,6 +21,7 @@ class Article < ApplicationRecord
   has_one :status, as: :linkable, dependent: :destroy
   enum :categorie, %i[actualité santé Jeux]
   scope :article_admin, -> { where.not(status: :actif) }
+  scope :article_user, -> { where(status: :actif) }
   validates :title, presence: true,
                     length: { minimum: 5 }
 
