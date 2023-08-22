@@ -13,7 +13,13 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show; end
+  def show;
+    if params[:turbo].present?
+      render turbo_stream: [
+        turbo_stream.replace("divModal",partial: 'articles/modalArticle',locals: {article:@article})
+      ]
+    end
+  end
 
   def edit; end
 
