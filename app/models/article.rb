@@ -18,8 +18,8 @@
 #
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_one :status, as: :linkable
-  enum :categorie, [ :actualité, :santé, :Jeux ]
+  has_one :status, as: :linkable, dependent: :destroy
+  enum :categorie, %i[actualité santé Jeux]
   scope :article_admin, -> { where.not(status: :actif) }
   validates :title, presence: true,
                     length: { minimum: 5 }
@@ -29,21 +29,22 @@ class Article < ApplicationRecord
   before_create :set_status
 
   def updelatable?
-    self.editable? && self.deletable?
+    editable? && deletable?
   end
 
   def editable?
-    Current.user&.admin? || self.user == Current.user
+    Current.user&.admin? || user == Current.user
   end
 
   def deletable?
-    Current.user&.admin? || self.user == Current.user
+    Current.user&.admin? || user == Current.user
   end
 
   def set_user
     self.user = Current.user
   end
+
   def set_status
-    self.status = Status.new(label: :en_cours);
+    self.status = Status.new(label: :en_cours)
   end
 end
