@@ -20,11 +20,13 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :status, as: :linkable
   enum :categorie, [ :actualité, :santé, :Jeux ]
+  scope :article_admin, -> { where.not(status: :actif) }
   validates :title, presence: true,
                     length: { minimum: 5 }
 
   belongs_to :user, optional: true
   before_create :set_user
+  before_create :set_status
 
   def updelatable?
     self.editable? && self.deletable?
@@ -40,5 +42,8 @@ class Article < ApplicationRecord
 
   def set_user
     self.user = Current.user
+  end
+  def set_status
+    self.status = Status.new(label: :en_cours);
   end
 end

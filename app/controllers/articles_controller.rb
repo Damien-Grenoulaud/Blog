@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     if params[:titleSearch].present?
         @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
     else
-        @articles = Article.all.includes(:user)
+        @articles = Article.all.includes(:user).actif?
     end
   end
 
