@@ -5,19 +5,21 @@
 # Table name: articles
 #
 #  id         :integer          not null, primary key
+#  categorie  :integer          default("actualité")
 #  text       :text
 #  title      :string
-#  users_type :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  users_id   :integer
+#  user_id    :integer
 #
 # Indexes
 #
-#  index_articles_on_users  (users_type,users_id)
+#  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
+  has_one :status, as: :linkable
+  enum :categorie, [ :actualité, :santé, :Jeux ]
   validates :title, presence: true,
                     length: { minimum: 5 }
 
