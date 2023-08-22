@@ -15,5 +15,5 @@
 #
 class Status < ApplicationRecord
   belongs_to :linkable, polymorphic: true
-  enum :libelle, [:actif,:inactif,:en_cours]
+  enum :label, {actif: "actif",inactif: "inactif",en_cours: "en_cours"}
 end

@@ -1,0 +1,58 @@
+<div id="divModal" class="bg-black bg-opacity-50 fixed inset-0 flex justify-center items-center z-10 transition " data-controller="modal">
+  <div class="p-6 bg-background rounded-lg min-w-160 bg-white p-8">
+    <div class="flex justify-between">
+      <b class="text-md" data-t></b>
+      <div class="p-3 cursor-pointer leading-none text-grey hover:text-primary text-4xl -mt-8 -mr-6" data-action="click->modal#close">×</div>
+    </div>
+    <div class="text-black max-w-77.5 mx-auto">
+      <div class="between my-4">
+        <%= link_to '< Retour', articles_path, class: "link" %>
+        <%= 
+        unless @article.user.nil?
+          if(@current_user)
+            if(@article.user == @current_user || @current_user.admin?)
+              link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
+            end
+          end
+        end
+        %> 
+      </div>
+      <div class="between mb-4">
+        <div>
+          <h1><%= @article.title %></h1>
+          <%= @article.updated_at.strftime("%d-%m-%Y") %>
+        </div>
+        <div>
+        <%= 
+
+        unless @article.user.nil?
+          if @article.user.avatar.attached?
+          puts "test avatar"
+            image_tag @article.user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
+          else
+            puts "PAS d'avatars"
+          end
+        end
+        %>
+        <%= 
+        
+        unless @article.user.nil?
+          @article.user.nom.to_s + " " + @article.user.prenom.to_s
+        else
+          
+        end
+        %></div>
+      </div>
+
+      <div class="mb-4">
+        <%= @article.text %>
+      </div>
+      <h2><%= @article.comments.count %> Commentaire(s)</h2>
+      <%= render @article.comments.includes(user:[avatar_attachment: :blob]) %>
+
+      <hr class="my-2">
+      <%= render 'comments/form' %>
+
+    </div>
+  </div>
+</div>

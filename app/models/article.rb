@@ -20,8 +20,8 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :status, as: :linkable, dependent: :destroy
   enum :categorie, %i[actualité santé Jeux]
-  scope :article_admin, -> { where.not(status: :actif) }
-  scope :article_user, -> { where(status: :actif) }
+  scope :article_admin, -> { joins(:status).where.not(status: {id: Status.actif}) }
+  scope :article_user, -> { joins(:status).where(status: {id: Status.actif}) }
   validates :title, presence: true,
                     length: { minimum: 5 }
 

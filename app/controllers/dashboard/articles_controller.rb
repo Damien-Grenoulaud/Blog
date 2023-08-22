@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-class ArticlesController < ApplicationController
+class Dashboard::ArticlesController < Dashboard::DashboardController
   before_action :login_relocate_obligatory, except: [:index, :show]
   before_action :set_article, except: [:index,:create]
-  before_action :verif_user, only: [:update,:edit,:destroy]
 
   def index
     if params[:titleSearch].present?
         @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
     else
-        @articles = Article.article_user.includes(:user)
+        @articles = Article.article_admin
     end
   end
 
@@ -75,10 +74,6 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = params[:id].present? ? Article.find(params[:id]) : Article.new
-  end
-  
-  def verif_user
-    redirect_to welcome_index_path, alert: "Accés refusé" unless @article.updelatable?
   end
   
 end

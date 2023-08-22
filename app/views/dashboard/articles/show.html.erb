@@ -1,0 +1,47 @@
+<div class="between my-4">
+  <%= link_to '< Retour', articles_path, class: "link" %>
+  <%= 
+  unless @article.user.nil?
+    if(@current_user)
+      if(@article.user == @current_user || @current_user.admin?)
+        link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
+      end
+    end
+  end
+  %> 
+</div>
+<div class="between mb-4">
+  <div>
+    <h1><%= @article.title %></h1>
+    <%= @article.updated_at.strftime("%d-%m-%Y") %>
+  </div>
+  <div>
+  <%= 
+
+  unless @article.user.nil?
+    if @article.user.avatar.attached?
+    puts "test avatar"
+      image_tag @article.user.avatar, style: 'height:50px;vertical-align:middle;display:inline'
+    else
+      puts "PAS d'avatars"
+    end
+  end
+  %>
+  <%= 
+  
+  unless @article.user.nil?
+    @article.user.nom.to_s + " " + @article.user.prenom.to_s
+  else
+    
+  end
+  %></div>
+</div>
+
+<div class="mb-4">
+  <%= @article.text %>
+</div>
+<h2><%= @article.comments.count %> Commentaire(s)</h2>
+<%= render @article.comments.includes(user:[avatar_attachment: :blob]) %>
+
+<hr class="my-2">
+<%= render 'comments/form' %>

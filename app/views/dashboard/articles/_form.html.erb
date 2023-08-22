@@ -1,0 +1,32 @@
+<%= form_with model: @article, local: true do |form| %>
+ 
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="appinput">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+ 
+  <div class="appinput">
+    <%= form.label :text %><br>
+    <%= form.text_area :text, class: "w-full" %>
+  </div>
+
+  <div class="between">
+    <%= form.submit :envoyer, class: "btn btn-primary mt-4" %>
+    <%= link_to 'Annuler', articles_path, class:"link" %>
+  </div>
+ 
+<% end %>

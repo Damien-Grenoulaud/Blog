@@ -1,0 +1,15 @@
+<%= render "articles/index/action" %>
+
+<%= render "articles/index/search" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Contenu</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <%= render @articles %>
+</table>
