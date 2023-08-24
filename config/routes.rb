@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   delete :logout, to: "authentication#logout"
   post :login, to: "authentication#search"
   get :dashboard, to: "dashboard#index"
+  
 
   namespace :dashboard do
-    resources :articles
+    resources :articles do
+      put :change_status
+    end
   end
 end

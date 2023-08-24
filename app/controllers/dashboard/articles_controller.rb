@@ -24,6 +24,19 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
 
   def edit; end
 
+  def change_status;
+    if params[:turbo].present?
+      if params[:status] == true
+        @article.status = :actif
+      else
+        @article.status = :inactif
+      end
+      render turbo_stream: [
+        turbo_stream.replace(dom_id(@article),partial: 'articles/article',locals: {article:@article})
+      ]
+    end
+  end
+
   def new; end
 
   def create
@@ -64,6 +77,20 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
       return false
     else
       return true
+    end
+  end
+  def verif_status_actif
+    if article.status == :actif
+      return "bg-lime-400"
+    else
+      return ""
+    end
+  end
+  def verif_status_inactif
+    if article.status == :inactif
+      return "bg-red-600"
+    else
+      return ""
     end
   end
   private
