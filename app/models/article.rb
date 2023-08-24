@@ -19,6 +19,7 @@
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :status, as: :linkable, dependent: :destroy
+  accepts_nested_attributes_for :status
   enum :categorie, %i[actualité santé Jeux]
   scope :article_admin, -> { joins(:status) }
   scope :article_user, -> { joins(:status).where(status: {id: Status.actif}) }

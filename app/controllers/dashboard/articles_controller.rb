@@ -5,6 +5,9 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   before_action :set_article, except: [:index,:create]
 
   def index
+    #Comment.all.update(updated_at: Time.current - 1.year)
+    #Status.all.update(label: "actif");
+    #exec("rails ancien_article:inactif_auto")
     if params[:titleSearch].present?
         @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
     else
