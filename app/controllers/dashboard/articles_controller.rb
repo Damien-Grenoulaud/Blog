@@ -8,7 +8,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     if params[:titleSearch].present?
         @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
     else
-        @articles = Article.article_admin
+        @articles = Article.article_admin.includes(:status)
     end
   end
 
@@ -25,16 +25,14 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   def edit; end
 
   def change_status;
-    if params[:turbo].present?
-      if params[:status] == true
-        @article.status = :actif
-      else
-        @article.status = :inactif
-      end
-      render turbo_stream: [
-        turbo_stream.replace(dom_id(@article),partial: 'articles/article',locals: {article:@article})
-      ]
+    if params[:article][:status] == "true"
+      @article.status.actif!
+    else
+      @article.status.inactif!
     end
+    render turbo_stream: [
+      turbo_stream.update("article_#{@article.id}",partial: 'dashboard/articles/article',locals: {article:@article})
+    ]
   end
 
   def new; end
@@ -79,20 +77,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
       return true
     end
   end
-  def verif_status_actif
-    if article.status == :actif
-      return "bg-lime-400"
-    else
-      return ""
-    end
-  end
-  def verif_status_inactif
-    if article.status == :inactif
-      return "bg-red-600"
-    else
-      return ""
-    end
-  end
+  
   private
 
   def article_params
@@ -100,7 +85,8 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   end
 
   def set_article
-    @article = params[:id].present? ? Article.find(params[:id]) : Article.new
+    article_id = params[:id] || params[:article_id]
+    @article = article_id.present? ? Article.find(article_id) : Article.new
   end
   
 end

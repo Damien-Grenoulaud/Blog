@@ -11,5 +11,9 @@
     </tr>
   </thead>
 
-  <%= render @articles %>
+  <% @articles.each do |article| %>
+    <tr id="<%= dom_id(article) %>">
+      <%= render "dashboard/articles/article", article: article %>
+    </tr>
+  <% end %>
 </table>

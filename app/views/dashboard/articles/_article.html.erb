@@ -1,27 +1,28 @@
-<tr id="<%= dom_id(article) %>">
+
   <td><%= article.title %></td>
   <td><%= article.text %></td>
   <td class="flex gap-2">
-    <%= form_with model: @article, url: "/change_status", turbo: true,method: :put do |form| %>
+    <%= form_with model: article, url: "articles/#{article.id}/change_status", turbo: true,method: :put do |form| %>
       <div class="appinput">
         <%= form.hidden_field :status, value: true %>
-        <%= button_to do %>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 <%= verif_status_actif(article.status) %>">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
-        <% end %>
+        </button>
       </div>
     <% end %>
 
-    <%= form_with model: @article, local: true, turbo: true,method: :put do |form| %>
+    <%= form_with model: article, url: "articles/#{article.id}/change_status", turbo: true,method: :put do |form| %>
       <div class="appinput">
         <%= form.hidden_field :status, value: false %>
-        <%= button_to do %>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        <button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 <%= verif_status_inactif(article.status) %>">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
-        <% end %>
+
+
+        </button>
       </div>
     <% end %>
   </td>
-</tr>
