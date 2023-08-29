@@ -9,7 +9,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     #Status.all.update(label: "actif");
     #exec("rails ancien_article:inactif_auto")
     
-    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status)
+    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status).page params[:page]
   end
 
   def show;

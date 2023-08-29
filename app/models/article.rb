@@ -41,11 +41,11 @@ class Article < ApplicationRecord
   end
 
   def editable?
-    Current.user&.admin? || user == Current.user
+    (Current.user&.admin? || user == Current.user) && Current.user.nil? == false
   end
 
   def deletable?
-    Current.user&.admin? || user == Current.user
+    (Current.user&.admin? || user == Current.user) && Current.user.nil? == false
   end
 
   def set_user

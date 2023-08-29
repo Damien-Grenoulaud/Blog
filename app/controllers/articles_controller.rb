@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   before_action :verif_user, only: [:update,:edit,:destroy]
 
   def index
-    @articles = Article.filter(params.slice(:title, :categorie)).article_user.order(:title).page params[:page]
+    @articles = Article.filter(params.slice(:title, :categorie)).includes(:user).article_user.order(:title).page params[:page]
   end
 
   def show;
@@ -44,7 +44,6 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-
     redirect_to articles_path, notice: "Article supprimé"
   end
 
