@@ -7,10 +7,13 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:titleSearch].present?
-        @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
+      
+      #@articles = Article.article_user.includes(:user).where "title like '%#{params[:titleSearch]}%'"
+      @articles = Article.article_user.includes(:user).filter(params)
     else
-        @articles = Article.article_user.includes(:user)
+        @articles = Article.article_user
     end
+    
   end
 
   def show;

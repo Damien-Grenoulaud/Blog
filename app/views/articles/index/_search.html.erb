@@ -2,7 +2,9 @@
 <%= form_with model: @article, local: true,method: :get, class: "mb-4" do |form| %>
   <div class="flex gap-4">
     <div class="appinput">
-      <%= form.text_field :titleSearch, placeholder: "Recherche..." %>
+      <%= form.label :title, "Titre :"  %><br>
+      <%= form.text_field :title, placeholder: "Titre..." %>
+      
     </div>
     <%= form.submit :Recherchez, class: "link" %>
   </div>
