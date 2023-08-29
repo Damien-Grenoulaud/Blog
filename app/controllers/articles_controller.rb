@@ -6,10 +6,10 @@ class ArticlesController < ApplicationController
   before_action :verif_user, only: [:update,:edit,:destroy]
 
   def index
-    if params[:titleSearch].present?
+    if params[:title].present?
       
       #@articles = Article.article_user.includes(:user).where "title like '%#{params[:titleSearch]}%'"
-      @articles = Article.article_user.includes(:user).filter(params)
+      @articles = Article.filter(params.slice(:title)).article_user
     else
         @articles = Article.article_user
     end

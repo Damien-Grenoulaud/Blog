@@ -17,7 +17,9 @@
 #  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
+  scope :filter_by_title, -> (title) { where "title like '%#{title}%'" }
   include Filterable
+
   has_many :comments, dependent: :destroy
   has_one :status, as: :linkable, dependent: :destroy
   accepts_nested_attributes_for :status
