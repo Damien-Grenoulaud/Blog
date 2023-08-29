@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   before_action :verif_user, only: [:update,:edit,:destroy]
 
   def index
-    @articles = Article.filter(params.slice(:title, :categorie)).article_user
+    @articles = Article.filter(params.slice(:title, :categorie)).article_user.order(:title).page params[:page]
   end
 
   def show;

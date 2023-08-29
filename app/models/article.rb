@@ -17,6 +17,7 @@
 #  index_articles_on_user_id  (user_id)
 #
 class Article < ApplicationRecord
+  paginates_per 25
   scope :filter_by_title, -> (title) { where "title like '%#{title}%'" }
   scope :filter_by_categorie, -> (categorie) { where categorie: categorie }
   scope :filter_by_status, -> (label) { joins(:status).where(status: {label: label}) }
