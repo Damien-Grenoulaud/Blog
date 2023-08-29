@@ -2,7 +2,16 @@
 <%= form_with model: @article, local: true,method: :get, class: "mb-4" do |form| %>
   <div class="flex gap-4">
     <div class="appinput">
-      <%= form.text_field :titleSearch, placeholder: "Recherche..." %>
+      <%= form.label :title, "Titre :"  %><br>
+      <%= form.text_field :title, placeholder: "Titre..." %>
+
+      <%= form.label :categorie, "Catégorie :"  %><br>
+      <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article&.categories) %>
+
+      <br>
+      <%= form.label :status, "Statut :"  %><br>
+      <%= form.select :status, options_for_select(Status.labels) %>
+
     </div>
     <%= form.submit :Recherchez, class: "link" %>
   </div>

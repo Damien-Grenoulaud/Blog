@@ -8,11 +8,8 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     #Comment.all.update(updated_at: Time.current - 1.year)
     #Status.all.update(label: "actif");
     #exec("rails ancien_article:inactif_auto")
-    if params[:titleSearch].present?
-        @articles = Article.all.includes(:user).where "title like '%#{params[:titleSearch]}%'"
-    else
-        @articles = Article.article_admin.includes(:status)
-    end
+    
+    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status)
   end
 
   def show;

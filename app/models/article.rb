@@ -19,6 +19,7 @@
 class Article < ApplicationRecord
   scope :filter_by_title, -> (title) { where "title like '%#{title}%'" }
   scope :filter_by_categorie, -> (categorie) { where categorie: categorie }
+  scope :filter_by_status, -> (label) { joins(:status).where(status: {label: label}) }
   include Filterable
 
   has_many :comments, dependent: :destroy
