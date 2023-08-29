@@ -6,11 +6,11 @@
       <%= form.text_field :title, placeholder: "Titre..." %>
 
       <%= form.label :categorie, "Catégorie :"  %><br>
-      <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article&.categories) %>
+      <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article&.categories), include_blank: true %>
 
       <br>
       <%= form.label :status, "Statut :"  %><br>
-      <%= form.select :status, options_for_select(Status.labels) %>
+      <%= form.select :status, options_for_select(Status.labels), include_blank: true %>
 
     </div>
     <%= form.submit :Recherchez, class: "link" %>
