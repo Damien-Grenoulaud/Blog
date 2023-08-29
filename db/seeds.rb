@@ -19,7 +19,7 @@ User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "user@te
 
 @user = User.create([nom: Faker::Name.name,prenom: Faker::Name.first_name,mail: "test@test.com",password: "motdepasse",password_confirmation:"motdepasse",admin:false])
 @idUser = @user.first.id
-for n in 0..50
+for n in 0..1000
     
     @article = Article.create(title: Faker::Name.name,text: Faker::Markdown.emphasis,user: User.all.sample)
     for y in 0..3

@@ -3,10 +3,10 @@
   <div class="flex gap-4">
     <div class="appinput">
       <%= form.label :title, "Titre :"  %><br>
-      <%= form.text_field :title, placeholder: "Titre..." %>
+      <%= form.text_field :title, placeholder: "Titre...", value: params[:title] %>
 
       <%= form.label :categorie, "Catégorie :"  %><br>
-      <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, @article&.categories) %>
+      <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, params[:categorie]) %>
 
       
 
