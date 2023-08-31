@@ -1,4 +1,14 @@
 
+  <td>
+    <%= form_with model: article, url: "articles/#{article.id}/change_status",method: :put do |form| %>
+      <div class="appinput w-5">
+        <%
+        #if params[:listeArticlesValid].split("|").include?(article.id)
+        %>
+        <%= form.check_box :modify, value: "#{article.id}", checked: false, data:{action:"click->fonctions#changeValueForm"} %>
+      </div>
+    <% end %>
+  </td>
   <td><%= article.title %></td>
   <td><%= article.text %></td>
   <td class="flex gap-2">
