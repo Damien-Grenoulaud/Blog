@@ -5,7 +5,7 @@
         <%
         #if params[:listeArticlesValid].split("|").include?(article.id)
         %>
-        <%= form.check_box :modify, value: "#{article.id}", checked: false, data:{action:"click->fonctions#changeValueForm"} %>
+        <%= form.check_box :modify, checked_value: "#{article.id}", checked: false, data:{action:"click->fonctions#changeValueForm",article: article.id} %>
       </div>
     <% end %>
   </td>

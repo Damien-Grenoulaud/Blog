@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :articles do
       put :change_status
     end
+    put :bulk_status, to: "articles#bulk_status"
   end
 end

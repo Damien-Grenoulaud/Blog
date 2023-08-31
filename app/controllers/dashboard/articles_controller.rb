@@ -9,7 +9,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     #Status.all.update(label: "actif");
     #exec("rails ancien_article:inactif_auto")
     
-    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status).page params[:page]
+    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status).order(:title).page params[:page]
   end
 
   def show;
@@ -25,6 +25,10 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   def edit; end
 
   def change_status;
+    
+    
+    
+    puts "testnormal"
     if params[:article][:status] == "true"
       @article.status.actif!
     else
@@ -33,6 +37,30 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     render turbo_stream: [
       turbo_stream.update("article_#{@article.id}",partial: 'dashboard/articles/article',locals: {article:@article})
     ]
+    
+    
+  end
+  def bulk_status;
+    @listeArticles = ""
+    puts params
+    if params[:article][:listeArticlesValid].present?
+      @listeArticles = params[:article][:listeArticlesValid].split("|")
+    elsif params[:article][:listeArticlesNonValid].present?
+      @listeArticles = params[:article][:listeArticlesNonValid].split("|")
+    end
+    @articleIndex = Article.where(id: @listeArticles)
+    if params[:article][:status] == "true"
+      @articleIndex.update(status_attributes: {label: :actif})
+    else
+      @articleIndex.update(status_attributes: {label: :inactif})
+    end
+
+    @articles = Article.filter(params.slice(:title, :categorie, :status)).article_admin.includes(:status).order(:title).page params[:page]
+
+    render turbo_stream: [
+      turbo_stream.update("tableauArticles",partial: 'dashboard/articles/index/tableau',locals: {params: params,articles: @articles})
+    ]
+
   end
 
   def new; end

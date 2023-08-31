@@ -2,45 +2,6 @@
 
 <%= render "dashboard/articles/index/search" %>
 
-<table class="table" data-controller="fonctions">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Titre</th>
-      <th>Contenu</th>
-      <th class="flex gap-2">
-        <%= form_with url: "articles/change_status", turbo: true,method: :put do |form| %>
-          <div class="appinput">
-            <%= form.hidden_field :status, value: true %>
-            <%= form.hidden_field :listeArticlesValid, value: params[:listeArticlesValid] %>
-            <button type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-            </button>
-          </div>
-        <% end %>
+<%= paginate @articles %>
 
-        <%= form_with url: "articles/change_status", turbo: true,method: :put do |form| %>
-          <div class="appinput">
-            <%= form.hidden_field :listeArticlesNonValid, value: params[:listeArticlesNonValid] %>
-            <button type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-
-
-            </button>
-          </div>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-
-  <% @articles.each do |article| %>
-    <tr id="<%= dom_id(article) %>">
-      <%= render "dashboard/articles/article", article: article %>
-    </tr>
-  <% end %>
-  <%= paginate @articles %>
-</table>
+<%= render "dashboard/articles/index/tableau" %>
