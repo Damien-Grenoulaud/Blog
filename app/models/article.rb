@@ -18,9 +18,9 @@
 #
 class Article < ApplicationRecord
   paginates_per 25
-  scope :filter_by_title, -> (title) { where "title like '%#{title}%'" }
-  scope :filter_by_categorie, -> (categorie) { where categorie: categorie }
-  scope :filter_by_status, -> (label) { joins(:status).where(status: {label: label}) }
+  scope :filter_by_title, ->(title) { where "title like '%#{title}%'" }
+  scope :filter_by_categorie, ->(categorie) { where categorie: }
+  scope :filter_by_status, ->(label) { joins(:status).where(status: { label: }) }
   include Filterable
 
   has_many :comments, dependent: :destroy
@@ -28,7 +28,7 @@ class Article < ApplicationRecord
   accepts_nested_attributes_for :status
   enum :categorie, %i[actualité santé Jeux]
   scope :article_admin, -> { joins(:status) }
-  scope :article_user, -> { joins(:status).where(status: {id: Status.actif}) }
+  scope :article_user, -> { joins(:status).where(status: { id: Status.actif }) }
   validates :title, presence: true,
                     length: { minimum: 5 }
 

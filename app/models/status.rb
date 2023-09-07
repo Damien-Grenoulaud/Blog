@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: statuses
@@ -15,5 +17,5 @@
 #
 class Status < ApplicationRecord
   belongs_to :linkable, polymorphic: true
-  enum :label, {actif: "actif",inactif: "inactif",en_cours: "en_cours"}
+  enum :label, { actif: 'actif', inactif: 'inactif', en_cours: 'en_cours' }
 end
