@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
     return unless @article.updelatable
 
     if @article.update(article_params)
+      UserMailer.with(user: Current.user).welcome_email.deliver_now
       redirect_to @article
     else
       render 'edit', status: :unprocessable_entity
