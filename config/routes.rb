@@ -10,16 +10,16 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'welcome#index'
 
-  get :login, to: "authentication#login"
-  delete :logout, to: "authentication#logout"
-  post :login, to: "authentication#search"
-  get :dashboard, to: "dashboard#index"
-  
+  get :login, to: 'authentication#login'
+  delete :logout, to: 'authentication#logout'
+  post :login, to: 'authentication#search'
+  get :dashboard, to: 'dashboard#index'
+
 
   namespace :dashboard do
     resources :articles do
       put :change_status
     end
-    put :bulk_status, to: "articles#bulk_status"
+    put :bulk_status, to: 'articles#bulk_status'
   end
 end
