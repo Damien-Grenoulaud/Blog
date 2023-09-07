@@ -8,12 +8,8 @@
       <div class="between my-4">
         <%= link_to '< Retour', articles_path, class: "link" %>
         <%= 
-        unless @article.user.nil?
-          if(@current_user)
-            if(@article.user == @current_user || @current_user.admin?)
-              link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
-            end
-          end
+         if @article.updelatable? 
+          link_to 'Modifier', edit_article_path(@article), class: "btn btn-primary" 
         end
         %> 
       </div>

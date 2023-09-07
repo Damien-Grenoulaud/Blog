@@ -7,9 +7,6 @@
 
       <%= form.label :categorie, "Catégorie :"  %><br>
       <%= form.select :categorie, options_for_select(Article.categories.map {|key, value| [key.titleize, Article.categories.key(value)]}, params[:categorie]) %>
-
-      
-
     </div>
     <%= form.submit :Recherchez, class: "link" %>
   </div>
