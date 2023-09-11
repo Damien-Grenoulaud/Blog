@@ -28,16 +28,16 @@ class ArticlesController < ApplicationController
     @article = Article.new article_params
     if @article.save
       redirect_to @article, notice: 'Article créé'
+      
     else
       render 'new', status: :unprocessable_entity
     end
   end
 
   def update
-    return unless @article.updelatable
+    return unless @article.updelatable?
 
     if @article.update(article_params)
-      UserMailer.with(user: Current.user).welcome_email.deliver_now
       redirect_to @article
     else
       render 'edit', status: :unprocessable_entity
